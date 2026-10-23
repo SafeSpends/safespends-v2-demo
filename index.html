@@ -126,11 +126,13 @@
   .toast button{background:none; border:none; color:var(--vioD); font-weight:800; font-size:14.5px; cursor:pointer}
   [data-theme="dark"] .toast button{color:var(--vio)}
   /* tiles */
-  .tiles{display:grid; grid-template-columns:1fr 1fr; gap:10px}
-  .tile{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:15px; cursor:pointer; text-align:left; color:var(--ink); font-family:inherit}
-  .tile .gi{font-size:22px}
-  .tile .t{font-weight:750; font-size:15px; margin-top:6px}
-  .tile .d{font-size:12.5px; color:var(--mut)}
+  .tiles{display:flex; flex-direction:column; gap:9px; max-width:680px}
+  .trow{display:flex; align-items:center; gap:12px; width:100%; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:13px 15px; cursor:pointer; text-align:left; color:var(--ink); font-family:inherit}
+  .trow:hover{border-color:var(--vio)}
+  .trow .gi{font-size:21px; width:28px; text-align:center; flex:none}
+  .trow .t{display:block; font-weight:750; font-size:15.5px}
+  .trow .d{display:block; font-size:12.5px; color:var(--mut); margin-top:1px}
+  .trow .chev{margin-left:auto; flex:none; color:var(--mut); font-size:24px; font-weight:700; line-height:1; padding-left:8px}
   .switch{position:relative; width:48px; height:28px; flex:none}
   .switch input{opacity:0; width:100%; height:100%; position:absolute; margin:0; cursor:pointer}
   .switch i{position:absolute; inset:0; background:var(--card2); border:1.5px solid var(--line); border-radius:99px; transition:.15s}
@@ -1432,7 +1434,7 @@ $$('#textSeg button').forEach(b=>b.onclick=()=>{S.settings.textSize=b.dataset.z;
 /* How this works joins the tiles */
 const BUILT4=Object.assign({},BUILT3,{'How this works':'how'});
 function renderTilesV4(){const all=TILES.concat([['🔁','Weekly reset','Guided 5-minute money date'],['📖','How this works','The whole planner, in plain words']]);
-  $('#tiles').innerHTML=all.map(t=>{const v=BUILT4[t[1]]||(t[1]==='Weekly reset'?'reset':''); return '<button class="tile" data-tile="'+esc(t[1])+'"><span class="gi">'+t[0]+'</span><div class="t">'+t[1]+'</div><div class="d">'+t[2]+' · <b>open</b></div></button>'}).join('');
+  $('#tiles').innerHTML=all.map(t=>{const v=BUILT4[t[1]]||(t[1]==='Weekly reset'?'reset':''); return '<button class="trow" data-tile="'+esc(t[1])+'"><span class="gi">'+t[0]+'</span><span class="grow"><span class="t">'+t[1]+'</span><span class="d">'+t[2]+'</span></span><span class="chev">›</span></button>'}).join('');
   $$('#tiles [data-tile]').forEach(el=>el.onclick=()=>{const v=BUILT4[el.dataset.tile]||(el.dataset.tile==='Weekly reset'?'reset':''); if(v)show(v)})}
 renderTilesV4();
 applyText();
