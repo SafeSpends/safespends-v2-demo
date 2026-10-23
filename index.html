@@ -28,7 +28,7 @@
   .brand{font-weight:800; font-size:19px; letter-spacing:.2px; line-height:1.1}
   .brand small{display:block; font-weight:600; font-size:11.5px; color:var(--mut); letter-spacing:.4px; text-transform:uppercase}
   .topsp{flex:1}
-  .iconbtn{width:38px;height:38px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:17px;cursor:pointer}
+  .iconbtn{width:38px;height:38px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:17px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;line-height:1;padding:0}
   /* generic */
   .card{background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:18px; margin:0 0 14px}
   .card h3{margin:0 0 4px; font-size:16.5px}
@@ -1006,7 +1006,7 @@ function renderMoney(){const t=TODAY(), mStart=t.slice(0,8)+'01';
   $$('#moneyList [data-delm]').forEach(btn=>btn.onclick=()=>{snap(); S.moneyIn=S.moneyIn.filter(x=>x.id!==btn.dataset.delm); save(); renderAll(); toast('Removed',true)});
 }
 
-const TILES=[['✉️','Envelopes','Fill them each payday'],['🎨','Categories','Colour budgets & rollover'],['💳','Debt payoff','Snowball & avalanche, simulated'],['🎯','Goals','Rings that fill as you save'],['🏆','Challenges','52-week & your own'],['⏸','Purchase pause','Sleep on it first'],['📡','Subscriptions','What they cost a year'],['🧾','Statement check','Find forgotten charges'],['🧠','Brain dump','Out of your head, on the page'],['📋','Daily plan','Three small things'],['↩️','Money back','Refunds you are owed'],['⭐','Milestones','Wins that quietly add up'],['🗓','Month view','Paydays, bills & spending']];
+const TILES=[['✉️','Envelopes','Fill them each payday'],['🎨','Categories','Colour budgets & rollover'],['🗓','Month calendar','Paydays, bills & spending'],['💳','Debt payoff','Snowball & avalanche, simulated'],['🎯','Goals','Rings that fill as you save'],['🏆','Challenges','52-week & your own'],['⏸','Purchase pause','Sleep on it first'],['📡','Subscriptions','What they cost a year'],['🧾','Statement check','Find forgotten charges'],['🧠','Brain dump','Out of your head, on the page'],['📋','Daily plan','Three small things'],['↩️','Money back','Refunds you are owed'],['⭐','Milestones','Wins that quietly add up']];
 function renderTiles(){$('#tiles').innerHTML=TILES.map(t=>'<button class="tile"><span class="gi">'+t[0]+'</span><div class="t">'+t[1]+'</div><div class="d">'+t[2]+' · <b>next step</b></div></button>').join('');
   $$('#tiles .tile').forEach(el=>el.onclick=()=>toast('Coming in the next build step — your data here stays safe',false))}
 
@@ -1249,7 +1249,7 @@ if(!S.flags.firstDay)S.flags.firstDay=TODAY();
       const hero=document.querySelector('#view-today .hero'); hero.parentNode.insertBefore(card,hero)}}
   S.flags.lastSeen=TODAY(); save()})();
 /* tiles — everything built now */
-const BUILT3=Object.assign({},BUILT,{'Purchase pause':'pause','Subscriptions':'subs','Statement check':'tax','Brain dump':'dump','Daily plan':'plan','Money back':'back','Milestones':'mile','Month view':'month'});
+const BUILT3=Object.assign({},BUILT,{'Purchase pause':'pause','Subscriptions':'subs','Statement check':'tax','Brain dump':'dump','Daily plan':'plan','Money back':'back','Milestones':'mile','Month calendar':'month'});
 function renderTilesV3(){const all=TILES.concat([['🔁','Weekly reset','Guided 5-minute money date']]);
   $('#tiles').innerHTML=all.map(t=>{const v=BUILT3[t[1]]||(t[1]==='Weekly reset'?'reset':''); return '<button class="tile" data-tile="'+esc(t[1])+'"><span class="gi">'+t[0]+'</span><div class="t">'+t[1]+'</div><div class="d">'+t[2]+' · <b>open</b></div></button>'}).join('');
   $$('#tiles [data-tile]').forEach(el=>el.onclick=()=>{const v=BUILT3[el.dataset.tile]||(el.dataset.tile==='Weekly reset'?'reset':''); if(v)show(v)})}
