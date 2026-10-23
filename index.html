@@ -348,8 +348,10 @@
 
   <!-- MORE -->
   <section class="view" id="view-more">
+    <div class="row" style="margin-bottom:12px"><h3 class="grow" style="margin:0; font-size:19px">More tools</h3><button class="btn ghost" id="moreCloseTop" style="flex:none">✕ Close</button></div>
     <div class="tiles" id="tiles"></div>
     <p class="small mut" style="margin-top:12px">Everything here runs on your own device. Nothing is uploaded, ever.</p>
+    <button class="btn ghost block" id="moreCloseBtn" style="margin-top:14px">✕ Close — back to Today</button>
   </section>
 
   <!-- ENVELOPES -->
@@ -1650,6 +1652,9 @@ dataCard7.appendChild(dataRow7);
 $('#printBtn').onclick=()=>{buildPrint(); window.print()};
 $('#csvSpendBtn').onclick=()=>dlCSV('safespends-spending.csv',buildSpendCSV());
 $('#csvPaidBtn').onclick=()=>dlCSV('safespends-payments.csv',buildPaidCSV());
+/* More view close buttons — like the V1 planner's sheet Close */
+$('#moreCloseTop').onclick=()=>show('today');
+$('#moreCloseBtn').onclick=()=>show('today');
 renderForecast();
 </script>
 </body>
