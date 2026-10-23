@@ -183,13 +183,13 @@
   @media (min-width:960px){
     body{display:flex; align-items:flex-start}
     .side{display:block; position:sticky; top:0; height:100vh; overflow-y:auto; width:266px; flex:none; background:var(--bg2); border-right:1px solid var(--line); padding:20px 14px 24px}
-    .wrap{flex:1; min-width:0; max-width:1120px; margin:0 auto; padding:26px 30px 44px}
+    .wrap{flex:1; min-width:0; max-width:1560px; margin:0 auto; padding:26px 34px 44px}
     nav.bot{display:none}
     header.top{display:none}
   }
   .side .sbrand{display:flex; align-items:center; gap:10px; padding:2px 8px 6px}
-  .side .grp{font-size:11px; letter-spacing:1.3px; color:var(--mut); font-weight:800; margin:18px 10px 7px; text-transform:uppercase}
-  .side button.nav{display:flex; align-items:center; gap:11px; width:100%; background:none; border:none; color:var(--ink); font-family:inherit; font-size:15px; font-weight:600; padding:10px 12px; border-radius:12px; cursor:pointer; text-align:left}
+  .side .grp{font-size:11px; letter-spacing:1.3px; color:var(--mut); font-weight:800; margin:13px 10px 5px; text-transform:uppercase}
+  .side button.nav{display:flex; align-items:center; gap:11px; width:100%; background:none; border:none; color:var(--ink); font-family:inherit; font-size:14.5px; font-weight:600; padding:8px 12px; border-radius:12px; cursor:pointer; text-align:left}
   .side button.nav:hover{background:var(--card2)}
   .side button.nav.on{background:var(--vio); color:#fff}
   .side button.nav .gi{font-size:17px; width:23px; text-align:center; flex:none}
@@ -263,7 +263,7 @@
   <button class="nav" data-nav="how"><span class="gi">📖</span>How this works</button>
 </aside>
 <div class="wrap">
-<style>.demobanner{margin:-18px -16px 14px} @media (min-width:960px){.demobanner{margin:-26px -30px 18px}}</style><div class="demobanner" style="background:#6D28D9;color:#fff;text-align:center;padding:10px 14px;border-radius:0 0 16px 16px;font:600 13.5px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif">DEMO &mdash; This is the free demo with sample data. Nothing you change here is saved. &middot; Full version: SafeSpendsStudio on Etsy</div>
+<style>.demobanner{margin:-18px -16px 14px} @media (min-width:960px){.demobanner{margin:-26px -34px 18px}}</style><div class="demobanner" style="background:#6D28D9;color:#fff;text-align:center;padding:10px 14px;border-radius:0 0 16px 16px;font:600 13.5px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif">DEMO &mdash; This is the free demo with sample data. Nothing you change here is saved. &middot; Full version: SafeSpendsStudio on Etsy</div>
   <header class="top">
     <div class="mark">S</div>
     <div class="brand">SafeSpends<small id="brandSub">Budget and Planner</small></div>
@@ -1556,7 +1556,7 @@ renderDash();
 <script>
 /* ================= Slice 7 — Forecast · Goal deadlines · Yearly set-aside · Second income · Print & CSV ================= */
 const st7=document.createElement('style');
-st7.textContent='.fcbars{display:flex; align-items:flex-end; gap:3px; height:88px; margin-top:10px}.fcbar{flex:1; background:var(--vio); border-radius:5px 5px 2px 2px; min-height:3px}.fcbar.min{background:var(--lime)}.fcbar.neg{background:var(--bad)} #printSheet{display:none} @media print{body>*{display:none !important} #printSheet{display:block !important; color:#000; font-family:Georgia,serif; padding:24px} #printSheet h1{font-size:24px; margin:0 0 2px} #printSheet h2{font-size:16px; margin:18px 0 6px} #printSheet table{width:100%; border-collapse:collapse} #printSheet td{padding:4px 0; border-bottom:1px solid #ddd; font-size:13.5px} #printSheet .r{text-align:right}}';
+st7.textContent='.fcbars{display:flex; gap:9px; margin-top:12px}.fccol{flex:1 1 0; max-width:54px; display:flex; flex-direction:column; gap:5px}.fctrack{height:84px; display:flex; align-items:flex-end}.fcbar{width:100%; background:var(--vio); border-radius:6px 6px 3px 3px; min-height:3px}.fcbar.min{background:var(--lime)}.fcbar.neg{background:var(--bad)}.fclab{font-size:10.5px; color:var(--mut); text-align:center; font-weight:700}.fclab.min{color:var(--lime)} #printSheet{display:none} @media print{body>*{display:none !important} #printSheet{display:block !important; color:#000; font-family:Georgia,serif; padding:24px} #printSheet h1{font-size:24px; margin:0 0 2px} #printSheet h2{font-size:16px; margin:18px 0 6px} #printSheet table{width:100%; border-collapse:collapse} #printSheet td{padding:4px 0; border-bottom:1px solid #ddd; font-size:13.5px} #printSheet .r{text-align:right}}';
 document.head.appendChild(st7);
 /* ---- second income plumbing ---- */
 if(S.settings.pay2Amt===undefined){S.settings.pay2Amt=0; S.settings.pay2Name=''; S.settings.pay2Freq='off'; S.settings.pay2Anchor=''}
@@ -1596,7 +1596,7 @@ function renderForecast(){const c=calc(); const start=c.base-c.debtMin-(+S.setti
   const series=[]; let bal=start;
   for(let i=0;i<c.days;i++){const d=addD(c.t,i); const out=billOutOn(d); bal-=out; series.push({d,bal,out})}
   const maxV=Math.max(start,1,...series.map(s=>s.bal)); const minS=series.reduce((m,s)=>s.bal<m.bal?s:m,series[0]||{d:c.t,bal:start,out:0});
-  $('#fcBars').innerHTML=series.map(s=>'<div class="fcbar'+(s.bal===minS.bal?' min':'')+(s.bal<0?' neg':'')+'" title="'+fmtD(s.d)+' · '+fmt(s.bal)+'" style="height:'+Math.max(3,Math.round(Math.max(0,s.bal)/maxV*100))+'%"></div>').join('');
+  $('#fcBars').innerHTML=series.map(s=>'<div class="fccol"><div class="fctrack"><div class="fcbar'+(s.bal===minS.bal?' min':'')+(s.bal<0?' neg':'')+'" title="'+fmtD(s.d)+' · '+fmt(s.bal)+'" style="height:'+Math.max(3,Math.round(Math.max(0,s.bal)/maxV*100))+'%"></div></div><div class="fclab'+(s.bal===minS.bal?' min':'')+'">'+pdate(s.d).getDate()+'</div></div>').join('');
   $('#fcFrom').textContent=fmtD(c.t); $('#fcTo').textContent='Payday '+fmtD(c.pd);
   const names=billNamesOn(minS.d); const thr=Math.max(150,(+S.settings.payAmt||0)*0.3); const colDay=series.find(s=>s.out>=thr);
   let h='<div class="li"><span class="ic">📉</span><span class="grow"><span class="t">Hardest day: '+fmtD(minS.d)+'</span><br><span class="d">'+(names.length?esc(names.join(' + '))+' take it down to '+fmt(minS.bal)+'.':'No bills land that day — it is simply the end of the run, at '+fmt(minS.bal)+'.')+'</span></span></div>';
